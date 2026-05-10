@@ -8,7 +8,6 @@ env.bak/
 venv.bak/
 
 # Streamlit specific
-.streamlit/
 out_emails_streamlit/
 out_emails_archive/
 
