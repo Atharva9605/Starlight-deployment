@@ -1,13 +1,40 @@
+# Starlight AI-CRM Mailer — Requirements
+
+# Core Web App & UI
+streamlit>=1.30.0
+
+# Data Processing
 pandas
-python-dotenv
-google-generativeai
-jinja2
-chromadb
-langchain-google-genai
-beautifulsoup4
-google-api-python-client
-google-auth-httplib2
-google-auth-oauthlib
 openpyxl
-pypdf
-langchain-text-splitters
+
+# Vector Database (RAG)
+chromadb>=0.4.0
+
+# PDF & Image Processing
+PyMuPDF     # imported as fitz
+Pillow      # image manipulation
+
+# AI / LLM Integration
+openai>=1.3.0
+jinja2      # email templating
+
+# Web Scraping
+beautifulsoup4
+requests
+urllib3
+
+# Authentication & Environment
+python-dotenv
+
+# GSuite / Gmail API Integration
+google-api-python-client
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
+
+# Storage Backends (Standard & Optional)
+azure-storage-blob
+cloudinary
+fastapi
+uvicorn
+python-multipart

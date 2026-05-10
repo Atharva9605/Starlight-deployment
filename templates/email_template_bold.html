@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ subject }}</title>
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    body, html { margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #020617;
+      color: #e2e8f0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Wrapper ── */
+    .wrap {
+      max-width: 660px;
+      margin: 32px auto;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 32px 64px rgba(0,0,0,0.6);
+    }
+
+    /* ── Hero header ── */
+    .hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+      padding: 40px 44px 52px;
+      position: relative;
+      overflow: hidden;
+    }
+    /* decorative glow circle */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(76,175,80,0.2) 0%, transparent 70%);
+    }
+    .hero-logo { position: relative; z-index: 2; }
+    .hero-logo img { height: 44px; }
+
+    /* Award badge */
+    .award-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(76,175,80,0.15);
+      border: 1px solid rgba(76,175,80,0.4);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #81C784;
+      margin: 18px 0 0;
+      position: relative;
+      z-index: 2;
+    }
+    .award-badge::before { content: '★'; font-size: 13px; }
+
+    .hero-subject {
+      position: relative;
+      z-index: 2;
+      font-size: 30px;
+      font-weight: 800;
+      color: #f8fafc;
+      line-height: 1.25;
+      margin: 22px 0 0;
+      letter-spacing: -0.5px;
+    }
+    .hero-subject span {
+      background: linear-gradient(90deg, #81C784, #4CAF50);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Body ── */
+    .body {
+      background: #0f172a;
+      padding: 36px 44px 44px;
+    }
+
+    .opening {
+      font-size: 14px;
+      font-weight: 700;
+      color: #94a3b8;
+      letter-spacing: 0.5px;
+      margin: 0 0 10px;
+    }
+    .intro {
+      font-size: 16px;
+      line-height: 1.85;
+      color: #cbd5e1;
+      margin: 0 0 36px;
+    }
+
+    /* ── Section label ── */
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #4CAF50;
+      font-weight: 700;
+      margin: 0 0 16px;
+    }
+
+    /* ── Elegant Typography ── */
+    .prose-section {
+      margin: 0 0 32px;
+    }
+    .prose-section ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .prose-section li {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #cbd5e1;
+      padding: 8px 0 8px 24px;
+      position: relative;
+    }
+    .prose-section li::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      color: #4CAF50;
+      font-size: 13px;
+      top: 12px;
+    }
+
+    /* ── CTA ── */
+    .cta-block {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border: 1px solid #334155;
+      border-top: 3px solid #4CAF50;
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin: 0 0 36px;
+    }
+    .cta-text {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #cbd5e1;
+      margin: 0 0 22px;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #4CAF50, #2E7D32);
+      color: #ffffff !important;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 14px 36px;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(76,175,80,0.30);
+    }
+
+    /* ── Signature ── */
+    .sig {
+      border-top: 1px solid #1e293b;
+      padding-top: 28px;
+    }
+    .sig-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: #f8fafc;
+      margin: 0 0 2px;
+    }
+    .sig-company {
+      font-size: 13px;
+      font-weight: 600;
+      color: #4CAF50;
+      margin: 0 0 10px;
+    }
+    .sig-details {
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.8;
+      margin: 0;
+    }
+    .sig-details a { color: #94a3b8; text-decoration: none; }
+    .sig-details a:hover { color: #4CAF50; }
+
+    /* ── Footer ── */
+    .footer {
+      background: #020617;
+      padding: 18px 44px;
+      text-align: center;
+      border-top: 1px solid #1e293b;
+    }
+    .footer p {
+      font-size: 11px;
+      color: #334155;
+      margin: 0;
+      line-height: 1.6;
+    }
+    .footer a { color: #475569; text-decoration: none; }
+
+    /* ── Product Reference Cards ── */
+    .ref-section-label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #4CAF50;
+      font-weight: 700;
+      margin: 0 0 16px;
+    }
+    .ref-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+      gap: 12px;
+      margin: 0 0 32px;
+    }
+    .ref-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      overflow: hidden;
+      text-decoration: none;
+    }
+    .ref-card:hover { border-color: #4CAF50; }
+    .ref-img {
+      width: 100%;
+      height: 125px;
+      object-fit: cover;
+      display: block;
+      border-bottom: 1px solid #334155;
+    }
+    .ref-info { padding: 10px 12px; }
+    .ref-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #f8fafc;
+      margin: 0 0 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .ref-meta {
+      font-size: 10px;
+      color: #64748b;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin: 0 0 4px;
+    }
+    .ref-specs {
+      font-size: 11px;
+      color: #94a3b8;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 600px) {
+      .hero, .body, .footer { padding-left: 24px; padding-right: 24px; }
+      .hero-subject { font-size: 24px; }
+      .ref-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Hero Header -->
+  <div class="hero">
+    <div class="hero-logo">
+      <a href="https://{{ sender_website }}" target="_blank">
+        <img src="{{ company_logo_url }}" alt="{{ sender_company }}">
+      </a>
+    </div>
+    <div class="award-badge">Top 10 Lighting Brand — Homes India 2025</div>
+    <h1 class="hero-subject">
+      <span>{{ subject }}</span>
+    </h1>
+  </div>
+
+  <!-- Body -->
+  <div class="body">
+
+    {% if opening_line %}
+    <p class="opening">{{ opening_line }}</p>
+    {% endif %}
+
+    {% if intro_paragraph %}
+    <p class="intro">{{ intro_paragraph | safe }}</p>
+    {% endif %}
+
+    <!-- Beautiful Flowing Text -->
+    <div class="prose-section">
+      {% set feature_items = feature_highlights if feature_highlights and feature_highlights|length > 0 else [] %}
+      {% if feature_items %}
+      <ul>
+        {% for item in feature_items %}
+        <li>{{ item | safe }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      {% if use_cases and use_cases|length > 0 %}
+      <br>
+      <ul>
+        {% for item in use_cases %}
+        <li>{{ item | safe }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+
+    <!-- Product References from Catalogue -->
+    {% set real_refs = [] %}
+    {% if referenced_products %}{% for r in referenced_products %}{% if r.blob_url and not r.blob_url.startswith('[') %}{% if real_refs.append(r) %}{% endif %}{% endif %}{% endfor %}{% endif %}
+    {% if real_refs and real_refs|length > 0 %}
+    <p class="section-label">From Our Catalogue</p>
+    <div class="ref-grid">
+      {% for ref in real_refs %}
+      <a class="ref-card" href="{{ ref.blob_url }}" target="_blank">
+        <img class="ref-img" src="{{ ref.blob_url }}" alt="{{ ref.product_name }}" loading="lazy">
+        <div class="ref-info">
+          <p class="ref-name">{{ ref.product_name }}</p>
+          <p class="ref-meta">{{ ref.catalogue_name }} · Pg {{ ref.page_number }}</p>
+          {% if ref.specs_preview %}
+          <p class="ref-specs">{{ ref.specs_preview }}</p>
+          {% endif %}
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- CTA -->
+    <div class="cta-block">
+      <p class="cta-text">{{ closing_paragraph | safe }}</p>
+      <a class="cta-btn"
+         href="mailto:{{ sender_email }}?subject=Re: {{ subject }}&body=Hi {{ sender_name }},"
+         target="_blank">Schedule a Call</a>
+    </div>
+
+    <!-- Signature -->
+    <div class="sig">
+      <p class="sig-name">{{ sender_name }}</p>
+      <p class="sig-company">{{ sender_company }}</p>
+      <p class="sig-details">
+        {{ sender_phone }}<br>
+        <a href="mailto:{{ sender_email }}">{{ sender_email }}</a><br>
+        <a href="https://{{ sender_website }}" target="_blank">{{ sender_website }}</a>
+      </p>
+    </div>
+
+  </div><!-- /body -->
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>
+      3 Vedant 3, P&T Colony, Gandhi Nagar, Dombivali East, Thane 421203&nbsp;|&nbsp;
+      <a href="https://{{ sender_website }}" target="_blank">{{ sender_website }}</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>

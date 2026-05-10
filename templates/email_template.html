@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ subject }}</title>
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    body, html { margin: 0; padding: 0; background: #f1f5f9; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: #1e293b;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Outer wrapper ── */
+    .wrap {
+      width: 100%;
+      max-width: 660px;
+      margin: 36px auto;
+    }
+
+    /* ── Header bar ── */
+    .header {
+      background: #0f172a;
+      border-radius: 16px 16px 0 0;
+      padding: 28px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header img { height: 42px; }
+    .header-tagline {
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #4CAF50;
+      font-weight: 600;
+    }
+
+    /* ── Green accent bar ── */
+    .accent-bar {
+      height: 4px;
+      background: linear-gradient(90deg, #3FA148 0%, #81C784 60%, #3FA148 100%);
+    }
+
+    /* ── Card body ── */
+    .card {
+      background: #ffffff;
+      padding: 44px 48px 40px;
+    }
+
+    /* ── Preamble tagline ── */
+    .preamble {
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #4CAF50;
+      font-weight: 700;
+      margin: 0 0 18px;
+    }
+
+    /* ── Subject heading ── */
+    .subject-heading {
+      font-size: 26px;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1.3;
+      margin: 0 0 24px;
+      letter-spacing: -0.3px;
+    }
+
+    /* ── Opening / intro ── */
+    .opening {
+      font-size: 15px;
+      font-weight: 600;
+      color: #475569;
+      margin: 0 0 6px;
+    }
+    .intro {
+      font-size: 16px;
+      line-height: 1.85;
+      color: #475569;
+      margin: 0 0 32px;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px;
+      background: #e2e8f0;
+      margin: 32px 0;
+    }
+
+    /* ── Typography & Flow ── */
+    .prose-section {
+      margin: 0 0 28px;
+    }
+    .prose-section p {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #334155;
+      margin: 0 0 16px;
+    }
+    .prose-section ul {
+      margin: 0 0 16px;
+      padding: 0;
+      list-style: none;
+    }
+    .prose-section li {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #334155;
+      padding: 6px 0 6px 20px;
+      position: relative;
+    }
+    .prose-section li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: #4CAF50;
+      font-weight: 700;
+    }
+
+    /* ── CTA block ── */
+    .cta-block {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin: 24px 0 32px;
+    }
+    .cta-text {
+      font-size: 15px;
+      line-height: 1.75;
+      color: #334155;
+      margin: 0 0 20px;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: #4CAF50;
+      color: #ffffff !important;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 13px 32px;
+      border-radius: 8px;
+    }
+
+    /* ── Signature ── */
+    .sig {
+      padding: 28px 0 0;
+      border-top: 1px solid #e2e8f0;
+    }
+    .sig-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0 0 4px;
+    }
+    .sig-role {
+      font-size: 13px;
+      color: #64748b;
+      margin: 0 0 8px;
+    }
+    .sig-details {
+      font-size: 13px;
+      color: #94a3b8;
+      line-height: 1.7;
+      margin: 0;
+    }
+    .sig-details a {
+      color: #4CAF50;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      background: #0f172a;
+      border-radius: 0 0 16px 16px;
+      padding: 20px 40px;
+      text-align: center;
+    }
+    .footer p {
+      font-size: 11px;
+      color: #475569;
+      margin: 0;
+      line-height: 1.6;
+    }
+    .footer a { color: #4CAF50; text-decoration: none; }
+
+    /* ── Product Reference Cards ── */
+    .ref-section-label {
+      font-size: 10px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #4CAF50;
+      font-weight: 700;
+      margin: 0 0 14px;
+    }
+    .ref-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+      margin: 0 0 28px;
+    }
+    .ref-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #f8fafc;
+      text-decoration: none;
+    }
+    .ref-card:hover { border-color: #4CAF50; }
+    .ref-img {
+      width: 100%;
+      height: 130px;
+      object-fit: cover;
+      display: block;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .ref-info { padding: 10px 12px; }
+    .ref-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0 0 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .ref-meta {
+      font-size: 10px;
+      color: #94a3b8;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin: 0 0 4px;
+    }
+    .ref-specs {
+      font-size: 11px;
+      color: #64748b;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 600px) {
+      .wrap { margin: 0; }
+      .header, .card, .footer { padding-left: 24px; padding-right: 24px; }
+      .subject-heading { font-size: 22px; }
+      .ref-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Header -->
+  <div class="header">
+    <a href="https://{{ sender_website }}" target="_blank">
+      <img src="{{ company_logo_url }}" alt="{{ sender_company }}">
+    </a>
+    <span class="header-tagline">Precision LED Lighting</span>
+  </div>
+
+  <!-- Green accent line -->
+  <div class="accent-bar"></div>
+
+  <!-- Main card -->
+  <div class="card">
+
+    {% if preamble %}
+    <p class="preamble">{{ preamble }}</p>
+    {% endif %}
+
+    <h1 class="subject-heading">{{ subject }}</h1>
+
+    {% if opening_line %}
+    <p class="opening">{{ opening_line }}</p>
+    {% endif %}
+
+    {% if intro_paragraph %}
+    <p class="intro">{{ intro_paragraph | safe }}</p>
+    {% endif %}
+
+    <!-- Elegant Narrative Body -->
+    <div class="prose-section">
+      {% set feature_items = feature_highlights if feature_highlights and feature_highlights|length > 0 else [] %}
+      {% if feature_items %}
+      <ul>
+        {% for item in feature_items %}
+        <li>{{ item | safe }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      {% if use_cases and use_cases|length > 0 %}
+      <ul>
+        {% for item in use_cases %}
+        <li>{{ item | safe }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+
+    <!-- Product References from Catalogue -->
+    {% set visible_refs = referenced_products | selectattr("blob_url") | list if referenced_products else [] %}
+    {% set real_refs = [] %}
+    {% for r in visible_refs %}{% if r.blob_url and not r.blob_url.startswith('[') %}{% if real_refs.append(r) %}{% endif %}{% endif %}{% endfor %}
+    {% if real_refs and real_refs|length > 0 %}
+    <div class="divider"></div>
+    <p class="ref-section-label">From Our Catalogue</p>
+    <div class="ref-grid">
+      {% for ref in real_refs %}
+      <a class="ref-card" href="{{ ref.blob_url }}" target="_blank">
+        <img class="ref-img" src="{{ ref.blob_url }}" alt="{{ ref.product_name }}" loading="lazy">
+        <div class="ref-info">
+          <p class="ref-name">{{ ref.product_name }}</p>
+          <p class="ref-meta">{{ ref.catalogue_name }} · Pg {{ ref.page_number }}</p>
+          {% if ref.specs_preview %}
+          <p class="ref-specs">{{ ref.specs_preview }}</p>
+          {% endif %}
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- CTA -->
+    <div class="cta-block">
+      <p class="cta-text">{{ closing_paragraph | safe }}</p>
+      <a class="cta-btn"
+         href="mailto:{{ sender_email }}?subject=Re: {{ subject }}&body=Hi {{ sender_name }},"
+         target="_blank">Let's Connect</a>
+    </div>
+
+    <!-- Signature -->
+    <div class="sig">
+      <p class="sig-name">{{ sender_name }}</p>
+      <p class="sig-role">{{ sender_company }}</p>
+      <p class="sig-details">
+        {{ sender_phone }}<br>
+        <a href="mailto:{{ sender_email }}">{{ sender_email }}</a><br>
+        <a href="https://{{ sender_website }}" target="_blank">{{ sender_website }}</a>
+      </p>
+    </div>
+
+  </div><!-- /card -->
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>
+      © {{ sender_company }} &nbsp;·&nbsp;
+      3 Vedant 3, P&T Colony, Gandhi Nagar, Dombivali East, Thane 421203&nbsp;·&nbsp;
+      <a href="https://{{ sender_website }}" target="_blank">{{ sender_website }}</a>
+    </p>
+    <p style="margin-top:6px; color:#334155;">
+      Recognised as one of the <strong style="color:#4CAF50;">Top 10 Brands in Lightings for 2025</strong>
+      – Homes India Magazine
+    </p>
+  </div>
+
+</div>
+</body>
+</html>

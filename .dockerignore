@@ -1,0 +1,12 @@
+.git
+.gitignore
+__pycache__
+*.pyc
+.env
+.env.example
+chroma_db/
+out_emails_streamlit/
+out_emails_archive/
+*.eml
+generated_emls.zip
+service_account.json

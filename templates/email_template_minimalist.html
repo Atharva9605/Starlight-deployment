@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ subject }}</title>
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    body, html { margin: 0; padding: 0; background: #fafafa; }
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      color: #111111;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Wrapper ── */
+    .wrap {
+      max-width: 620px;
+      margin: 48px auto;
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+    }
+
+    /* ── Top rule ── */
+    .top-rule {
+      height: 3px;
+      background: #111111;
+    }
+
+    /* ── Header ── */
+    .header {
+      padding: 32px 48px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .header img { height: 32px; }
+    .header-date {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 11px;
+      color: #aaaaaa;
+      letter-spacing: 1px;
+    }
+
+    /* ── Body ── */
+    .body {
+      padding: 40px 48px 44px;
+    }
+
+    /* ── Subject ── */
+    .subject-line {
+      font-size: 22px;
+      font-weight: 400;
+      color: #111111;
+      line-height: 1.4;
+      margin: 0 0 10px;
+      letter-spacing: -0.2px;
+    }
+    .subject-rule {
+      height: 1px;
+      background: #111111;
+      margin: 0 0 28px;
+      width: 48px;
+    }
+
+    /* ── Opening / intro ── */
+    .opening {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #888888;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin: 0 0 12px;
+    }
+    .intro {
+      font-size: 16px;
+      line-height: 1.95;
+      color: #333333;
+      margin: 0 0 36px;
+    }
+
+    /* ── Section header ── */
+    .section-header {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #aaaaaa;
+      border-top: 1px solid #eeeeee;
+      padding-top: 22px;
+      margin: 0 0 18px;
+    }
+
+    /* ── Typography & Flow ── */
+    .prose-section {
+      margin: 0 0 36px;
+    }
+    .prose-section ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .prose-section li {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #333333;
+      padding: 8px 0 8px 24px;
+      position: relative;
+    }
+    .prose-section li::before {
+      content: '✔';
+      position: absolute;
+      left: 0;
+      color: #4CAF50;
+      font-size: 13px;
+      top: 13px;
+    }
+
+    /* ── CTA ── */
+    .cta-section { margin: 36px 0 32px; }
+    .cta-text {
+      font-size: 16px;
+      line-height: 1.85;
+      color: #333333;
+      margin: 0 0 22px;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: #111111;
+      color: #ffffff !important;
+      text-decoration: none;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 14px 36px;
+    }
+    .cta-btn:hover { background: #4CAF50; }
+
+    /* ── Signature ── */
+    .sig {
+      border-top: 1px solid #eeeeee;
+      padding-top: 28px;
+      margin-top: 32px;
+    }
+    .sig-name {
+      font-size: 15px;
+      font-weight: 400;
+      color: #111111;
+      margin: 0 0 2px;
+    }
+    .sig-details {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 12px;
+      color: #999999;
+      margin: 0;
+      line-height: 1.8;
+    }
+    .sig-details a { color: #666666; text-decoration: none; border-bottom: 1px solid #dddddd; }
+    .sig-details a:hover { color: #4CAF50; border-bottom: 1px solid #4CAF50; }
+
+    /* ── Award line ── */
+    .award-line {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 11px;
+      color: #aaaaaa;
+      letter-spacing: 0.5px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid #f5f5f5;
+    }
+    .award-line strong { color: #555555; }
+
+    /* ── Footer ── */
+    .footer {
+      background: #f9f9f9;
+      border-top: 1px solid #eeeeee;
+      padding: 18px 48px;
+    }
+    .footer p {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 11px;
+      color: #bbbbbb;
+      margin: 0;
+      line-height: 1.6;
+    }
+    .footer a { color: #999999; text-decoration: none; }
+
+    /* ── Product Reference Cards ── */
+    .ref-section-header {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #aaaaaa;
+      border-top: 1px solid #eeeeee;
+      padding-top: 22px;
+      margin: 28px 0 16px;
+    }
+    .ref-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+      gap: 12px;
+      margin: 0 0 32px;
+    }
+    .ref-card {
+      border: 1px solid #e8e8e8;
+      text-decoration: none;
+      display: block;
+    }
+    .ref-card:hover { border-color: #111111; }
+    .ref-img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      display: block;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    .ref-info { padding: 8px 10px 10px; }
+    .ref-name {
+      font-size: 12px;
+      font-weight: 500;
+      color: #111111;
+      margin: 0 0 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .ref-meta {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 10px;
+      color: #aaaaaa;
+      letter-spacing: 0.5px;
+      margin: 0 0 3px;
+    }
+    .ref-specs {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 10px;
+      color: #888888;
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 600px) {
+      .wrap { margin: 0; border: none; }
+      .header, .body, .footer { padding-left: 24px; padding-right: 24px; }
+      .ref-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Top rule -->
+  <div class="top-rule"></div>
+
+  <!-- Header -->
+  <div class="header">
+    <a href="https://{{ sender_website }}" target="_blank">
+      <img src="{{ company_logo_url }}" alt="{{ sender_company }}">
+    </a>
+    <span class="header-date">{{ sender_company }}</span>
+  </div>
+
+  <!-- Body -->
+  <div class="body">
+
+    <h1 class="subject-line">{{ subject }}</h1>
+    <div class="subject-rule"></div>
+
+    {% if opening_line %}
+    <p class="opening">{{ opening_line }}</p>
+    {% endif %}
+
+    {% if intro_paragraph %}
+    <p class="intro">{{ intro_paragraph | safe }}</p>
+    {% endif %}
+
+    <!-- Beautiful Flowing Text -->
+    <div class="prose-section">
+      {% set feature_items = feature_highlights if feature_highlights and feature_highlights|length > 0 else [] %}
+      {% if feature_items %}
+      <ul>
+        {% for item in feature_items %}
+        <li>{{ item | safe }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      {% if use_cases and use_cases|length > 0 %}
+      <br>
+      <ul>
+        {% for item in use_cases %}
+        <li>{{ item | safe }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+
+    <!-- Product References from Catalogue -->
+    {% set real_refs = [] %}
+    {% if referenced_products %}{% for r in referenced_products %}{% if r.blob_url and not r.blob_url.startswith('[') %}{% if real_refs.append(r) %}{% endif %}{% endif %}{% endfor %}{% endif %}
+    {% if real_refs and real_refs|length > 0 %}
+    <p class="ref-section-header">From Our Catalogue</p>
+    <div class="ref-grid">
+      {% for ref in real_refs %}
+      <a class="ref-card" href="{{ ref.blob_url }}" target="_blank">
+        <img class="ref-img" src="{{ ref.blob_url }}" alt="{{ ref.product_name }}" loading="lazy">
+        <div class="ref-info">
+          <p class="ref-name">{{ ref.product_name }}</p>
+          <p class="ref-meta">{{ ref.catalogue_name }} · Pg {{ ref.page_number }}</p>
+          {% if ref.specs_preview %}
+          <p class="ref-specs">{{ ref.specs_preview }}</p>
+          {% endif %}
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <p class="cta-text">{{ closing_paragraph | safe }}</p>
+      <a class="cta-btn"
+         href="mailto:{{ sender_email }}?subject=Re: {{ subject }}&body=Hi {{ sender_name }},"
+         target="_blank">Begin Conversation</a>
+    </div>
+
+    <!-- Signature -->
+    <div class="sig">
+      <p class="sig-name">{{ sender_name }}</p>
+      <p class="sig-details">
+        {{ sender_company }}<br>
+        {{ sender_phone }}&nbsp;&nbsp;·&nbsp;&nbsp;
+        <a href="mailto:{{ sender_email }}">{{ sender_email }}</a><br>
+        <a href="https://{{ sender_website }}" target="_blank">{{ sender_website }}</a>
+      </p>
+      <p class="award-line">
+        <strong>Homes India Magazine</strong> — Top 10 Brands in Lightings for 2025
+      </p>
+    </div>
+
+  </div><!-- /body -->
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>
+      3 Vedant 3, P&T Colony, Gandhi Nagar, Dombivali East, Thane 421203&nbsp;·&nbsp;
+      <a href="https://{{ sender_website }}" target="_blank">{{ sender_website }}</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
